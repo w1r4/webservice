@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:gravity="center"
-        android:text="Simple Add"
+        android:text="Simple Webservice"
         android:textSize="30dp" />
 
     <EditText
@@ -18,16 +18,9 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:numeric="integer"
         android:singleLine="true" />
     
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:numeric="integer"
-        android:singleLine="true" />
+ 
 
     <Button
         android:id="@+id/button1"

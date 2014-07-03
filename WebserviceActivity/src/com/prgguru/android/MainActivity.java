@@ -29,24 +29,24 @@ public class MainActivity extends Activity {
 	private final String SOAP_ACTION = NAMESPACE + "/" +METHOD_NAME;
 	
 	private String TAG = "PGGURU";
-	private static String fi_int1;
-	private static String fi_int2;
-	private static String fe_int;
+	private static String fi_input;
+//	private static String fi_int2;
+	private static String fe_output;
 	Button b;
 	TextView tv;
-	EditText et_fi_int1;
-	EditText et_fi_int2;
+	EditText et_fi_input;
+//	EditText et_fi_int2;
 	private static String msg;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-		//fi_int1 Edit Control
-		et_fi_int1 = (EditText) findViewById(R.id.editText1);
-		et_fi_int2 = (EditText) findViewById(R.id.editText2);
+		//fi_input Edit Control
+		et_fi_input = (EditText) findViewById(R.id.editText1);
+		//et_fi_int2 = (EditText) findViewById(R.id.editText2);
 		
 		
-		//fe_intheit Text control
+		//fe_outputheit Text control
 		tv = (TextView) findViewById(R.id.tv_result);
 		tv.setMovementMethod(new ScrollingMovementMethod());
 		//Button to trigger web service invocation
@@ -56,8 +56,8 @@ public class MainActivity extends Activity {
 		  public void onClick(View v) {
 				
 				    
-					fi_int1 = et_fi_int1.getText().toString();
-					fi_int2 = et_fi_int2.getText().toString();
+					fi_input = et_fi_input.getText().toString();
+//					fi_int2 = et_fi_int2.getText().toString();
 					//Create instance for AsyncCallWS
 					AsyncCallWS task = new AsyncCallWS();
 					//Call execute 
@@ -68,7 +68,7 @@ public class MainActivity extends Activity {
 	    });
 	 }
 
-	public void getResult(String int1, String int2) {
+	public void getResult(String int1) {
 		//Create request
 		SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
 		
@@ -94,7 +94,7 @@ public class MainActivity extends Activity {
 			androidHttpTransport.call(SOAP_ACTION, envelope);
 	
 			SoapObject result = (SoapObject) envelope.bodyIn;
-			fe_int = androidHttpTransport.responseDump;
+			fe_output = androidHttpTransport.responseDump;
 			
 			//PropertyInfo pi = new
 				//PropertyInfo()
@@ -112,14 +112,14 @@ public class MainActivity extends Activity {
 		@Override
 		protected Void doInBackground(String... params) {
 			Log.i(TAG, "doInBackground");
-			getResult(fi_int1,fi_int2);
+			getResult(fi_input);
 			return null;
 		}
 
 		@Override
 		protected void onPostExecute(Void result) {
 			Log.i(TAG, "onPostExecute");
-			tv.setText(fe_int);
+			tv.setText(fe_output);
 			//tv.setText(msg);
 		}
 
